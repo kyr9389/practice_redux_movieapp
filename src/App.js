@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Movie from './Movie';
+import Movie from './component/Movie';
 
 
 class App extends Component {
@@ -10,7 +10,6 @@ class App extends Component {
     componentDidMount() {
         this._getMovies();
     }
-
 
     _renderMovies = () => {
         const movies = this.state.movies.map(movie => {
