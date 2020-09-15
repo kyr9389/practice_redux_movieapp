@@ -1,32 +1,8 @@
-# movie app with React JS
+# movie app with Redux
 
-React 학습의 목적으로 [링크](https://www.youtube.com/playlist?list=PL7jH19IHhOLOFTVD4R8FeZWkwpVi8-9Fv)의 강좌를 따라가며 만들어봅니다.
+Redux 학습의 목적으로 [링크](https://github.com/kyr9389/practice_react_movieapp)의 프로젝트에 Redux를 적용시켜봅니다.
 
+작업 과정은 개인 블로그에 있습니다.
 
-
-### ReactJS로 웹 서비스 만들기
-
-1. Orientation ✔
-2. What are we building ✔
-3. Introduction to Create React App ✔
-4. Hello World with React and CRA ✔
-5. Creation React Components with JSX ✔
-6. Data flow with Props ✔
-7. List with .map ✔
-8. Validation Props with Prop Types ✔
-9. Component Lifecycle ✔
-10. Thinking in React Component State ✔
-11. Practicing this setState ✔
-12. Loading states ✔
-13. Smart vs Dumb Components ✔
-14. AJAX on React ✔
-15. Promises ✔
-16. Async Await ✔
-17. Updating Movie : Component ✔
-18. CSS for Movie ✔
-19. Building for Production ✔
-20. The END!
-
-### 강의 필기 in WIKI
-
-강의 필기는 [이곳](https://github.com/kyr9389/practice_react_movieapp/wiki)에서 확인 가능합니다.
+- [react 프로젝트에 redux 적용하기 #1](https://usage.tistory.com/56)
+- react 프로젝트에 redux 적용하기 #2 (작성중)
