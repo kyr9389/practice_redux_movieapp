@@ -13,7 +13,9 @@
     "react-lines-ellipsis": "^0.14.1",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-actions": "^2.6.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,5 +40,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://github.com/kyr9389/practice_react_movieapp"
+  "homepage": "https://github.com/kyr9389/practice_react_movieapp",
+  "devDependencies": {
+    "axios": "^0.20.0"
+  }
 }

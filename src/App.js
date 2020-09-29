@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
 import Movie from './component/Movie';
+import * as movieActions from './reducers/movieFetch';
+import {bindActionCreators} from "redux";
 
 
 class App extends Component {
 
-    state = { }
+
 
     componentDidMount() {
-        this._getMovies();
+        movieActions.movieFetch();
+        //this._getMovies();
     }
 
+    componentWillReceiveProps(nextProps, nextContent) {
+        const { movieActions } = this.props;
+
+    }
+
+
+    getMovie = async () => {
+        const { movieActions } = this.props;
+
+        try {
+            await movieActions.getMovie();
+            console.log('awaiting ...')
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+
+
+/*
     _renderMovies = () => {
-        const movies = this.state.movies.map(movie => {
+
+        const movies = this.props.movie.map(movie => {
             return <Movie title={movie.title_english}
                           poster={movie.medium_cover_image}
                           key={movie.id}
@@ -23,7 +48,6 @@ class App extends Component {
 
         return movies
     }
-
 
     _getMovies = async () => {
         const movies = await this._callApi();
@@ -39,9 +63,11 @@ class App extends Component {
             .catch(err => console.log(err))
     }
 
-
+*/
     render() {
         const { movies } = this.state;
+        const { movie } = this.props;
+
       return (
           <div className={movies ? "App" : "App--loading"}>
               {movies ? this._renderMovies() : 'Loading' }
@@ -50,4 +76,13 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+    (state) => ({
+        movie: state.movieFetch.data,
+        loading: state.movieFetch.pending,
+        error: state.movieFetch.error
+    }),
+    (dispatch) => ({
+        movieActions: bindActionCreators(movieActions, dispatch)
+    })
+)(App);
