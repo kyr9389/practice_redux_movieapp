@@ -8,18 +8,11 @@ import {bindActionCreators} from "redux";
 
 class App extends Component {
 
-
-
     componentDidMount() {
-        movieActions.movieFetch();
+        console.log("component mounted, fetch start");
+        this.props.movieActions.movieFetch();
         //this._getMovies();
     }
-
-    componentWillReceiveProps(nextProps, nextContent) {
-        const { movieActions } = this.props;
-
-    }
-
 
     getMovie = async () => {
         const { movieActions } = this.props;
@@ -34,43 +27,34 @@ class App extends Component {
 
 
 
-/*
-    _renderMovies = () => {
+    _renderMovies = (movieParser) => {
+        //const movies = movieActions.getMovieObj(movieParser)
 
-        const movies = this.props.movie.map(movie => {
-            return <Movie title={movie.title_english}
-                          poster={movie.medium_cover_image}
-                          key={movie.id}
-                          genres={movie.genres}
-                          synopsis={movie.synopsis}
+        const movies = movieParser.map(movieParser => {
+            return <Movie title={movieParser.title_english}
+                          poster={movieParser.medium_cover_image}
+                          key={movieParser.id}
+                          genres={movieParser.genres}
+                          synopsis={movieParser.synopsis}
             />
         })
 
         return movies
     }
 
-    _getMovies = async () => {
-        const movies = await this._callApi();
-        this.setState({
-            movies
-        })
-    }
-
-    _callApi = () => {
-        return fetch('https://yts.mx/api/v2/list_movies.json?sort_by=download_count')
-            .then(response => response.json())
-            .then(json => json.data.movies)
-            .catch(err => console.log(err))
-    }
-
-*/
     render() {
-        const { movies } = this.state;
-        const { movie } = this.props;
+        const { movie, error, loading } = this.props;
+        console.log("renderSection ", Array.isArray(movie));
+
+        if (movie) {
+            console.log("로딩 완료");
+        }
+
 
       return (
-          <div className={movies ? "App" : "App--loading"}>
-              {movies ? this._renderMovies() : 'Loading' }
+          <div className={movie ? "App" : "App--loading"}>
+              { loading && <h2>Loading</h2> }
+              { error ? <h1>에러가 발생하였습니다</h1> : this._renderMovies(movie) }
           </div>
       );
   }
@@ -78,7 +62,7 @@ class App extends Component {
 
 export default connect(
     (state) => ({
-        movie: state.movieFetch.data,
+        movie: state.movieFetch.movieList,
         loading: state.movieFetch.pending,
         error: state.movieFetch.error
     }),
