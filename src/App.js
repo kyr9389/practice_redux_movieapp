@@ -11,24 +11,9 @@ class App extends Component {
     componentDidMount() {
         console.log("component mounted, fetch start");
         this.props.movieActions.movieFetch();
-        //this._getMovies();
     }
-
-    getMovie = async () => {
-        const { movieActions } = this.props;
-
-        try {
-            await movieActions.getMovie();
-            console.log('awaiting ...')
-        } catch(e) {
-            console.log(e);
-        }
-    }
-
-
 
     _renderMovies = (movieParser) => {
-        //const movies = movieActions.getMovieObj(movieParser)
 
         const movies = movieParser.map(movieParser => {
             return <Movie title={movieParser.title_english}
@@ -49,7 +34,6 @@ class App extends Component {
         if (movie) {
             console.log("로딩 완료");
         }
-
 
       return (
           <div className={movie ? "App" : "App--loading"}>

@@ -1,7 +1,4 @@
-//import * as types from '../actions/ActionTypes';
-
 import { handleActions } from 'redux-actions';
-import Movie from "../component/Movie";
 import React from "react";
 
 function getMovieAPI() {
@@ -9,30 +6,6 @@ function getMovieAPI() {
         .then((response) => response.json())
         .then((json) => json.data.movies)
         .catch((err) => console.log(err))
-}
-
-export function getMovieObj(movieParser) {
-
-    let movieTag;
-
-    for(let key in movieParser) {
-        let movieObj = movieParser[key];
-        console.log(movieObj.id);
-
-        movieTag = movieComponent(movieObj);
-
-    }
-
-    return movieTag
-}
-
-function movieComponent(movieObj) {
-    return <Movie title={movieObj.title_english}
-                  poster={movieObj.medium_cover_image}
-                  key={movieObj.id}
-                  genres={movieObj.genres}
-                  synopsis={movieObj.synopsis}
-    />
 }
 
 const GET_MOVIE_PENDING = 'GET_MOVIE_PENDING';
@@ -81,12 +54,6 @@ export default handleActions({
         };
     },
     [GET_MOVIE_SUCCESS]: (state, action) => {
-
-        console.log("received data : " + action.payload);
-
-        //const movieParser = { ...action.payload }
-
-        console.log(typeof([...action.payload]))
 
         return {
             ...state,
