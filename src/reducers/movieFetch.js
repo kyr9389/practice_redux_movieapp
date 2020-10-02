@@ -1,5 +1,4 @@
 import { handleActions } from 'redux-actions';
-import React from "react";
 
 import * as types from '../actions/ActionTypes';
 
